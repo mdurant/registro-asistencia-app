@@ -146,6 +146,16 @@ Detalle técnico para el equipo de desarrollo: Expo SDK 56, React Native, TypeSc
 
 ---
 
+## Demo en video
+
+Si prefieres ver la app antes de instalarla, hay un recorrido grabado con el flujo completo (login, permisos, ingreso, historial y salida).
+
+**[▶ Abrir demo en video — enlace externo (MP4)](https://github.com/mdurant/registro-asistencia-app/raw/main/docs/video-demo.mp4)**
+
+Página del demo con resumen y credenciales: [DEMO.md](./DEMO.md)
+
+---
+
 ## Demo en Android
 
 ### Requisitos

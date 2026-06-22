@@ -7,6 +7,16 @@ Aplicación móvil para que colaboradores en terreno registren su **ingreso y sa
 
 ---
 
+## Demo en video
+
+Mira el recorrido completo de la app sin instalar nada:
+
+**[▶ Abrir demo en video (enlace externo)](https://github.com/mdurant/registro-asistencia-app/raw/main/docs/video-demo.mp4)**
+
+Más contexto y credenciales de prueba: [docs/DEMO.md](docs/DEMO.md)
+
+---
+
 ## ¿Qué es?
 
 **Mi Asistencia** es una app pensada para equipos que visitan puntos de venta (supermercados) en Chile. Cada persona puede marcar cuándo llega y cuándo se va, desde su celular, incluso si en ese momento no hay internet. La información queda respaldada y, cuando hay conexión, se sincroniza con el servidor de la empresa.
@@ -19,7 +29,8 @@ La experiencia visual sigue una línea moderna y clara (verde menta / teal), sim
 
 Para dueños de negocio, supervisores y equipo de implementación:
 
-📄 **[Guía del proyecto](docs/GUIA_DEL_PROYECTO.md)** — qué hace la app, flujos, roles, demo en Android e iPhone, alcance actual vs. futuro y puesta en marcha.
+📄 **[Guía del proyecto](docs/GUIA_DEL_PROYECTO.md)** — qué hace la app, flujos, roles, demo en Android e iPhone, alcance actual vs. futuro y puesta en marcha.  
+🎬 **[Demo en video](docs/DEMO.md)** — recorrido grabado; [abrir MP4 en el navegador](https://github.com/mdurant/registro-asistencia-app/raw/main/docs/video-demo.mp4).
 
 ---
 
@@ -75,7 +86,7 @@ Configura las variables en `.env` (copia desde `.env.example`). Los correos de d
 | `src/services/` | Lógica de asistencia, sync, correos |
 | `backend/` | Servidor de prueba (API + envío SMTP) |
 | `database/` | Esquema SQL de referencia |
-| `docs/` | Documentación para negocio y operación |
+| `docs/` | Documentación, [demo en video](docs/DEMO.md) y guía de negocio |
 
 ---
 
