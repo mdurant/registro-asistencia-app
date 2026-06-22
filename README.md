@@ -1,56 +1,98 @@
-# Welcome to your Expo app 👋
+# Mi Asistencia
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Aplicación móvil para que colaboradores en terreno registren su **ingreso y salida** en supermercados asignados, con evidencia de ubicación, trazabilidad y notificaciones por correo.
 
-## Get started
+**Propietario:** IntegralTech Consulting Spa  
+**CTO:** Mauricio Durán Torres · [mauriciodurant@gmail.com](mailto:mauriciodurant@gmail.com)
 
-1. Install dependencies
+---
 
-   ```bash
-   npm install
-   ```
+## ¿Qué es?
 
-2. Start the app
+**Mi Asistencia** es una app pensada para equipos que visitan puntos de venta (supermercados) en Chile. Cada persona puede marcar cuándo llega y cuándo se va, desde su celular, incluso si en ese momento no hay internet. La información queda respaldada y, cuando hay conexión, se sincroniza con el servidor de la empresa.
 
-   ```bash
-   npx expo start
-   ```
+La experiencia visual sigue una línea moderna y clara (verde menta / teal), similar a aplicaciones corporativas tipo TeamHub: tarjetas limpias, estados con color y mensajes fáciles de entender.
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Documentación completa
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Para dueños de negocio, supervisores y equipo de implementación:
 
-## Get a fresh project
+📄 **[Guía del proyecto](docs/GUIA_DEL_PROYECTO.md)** — qué hace la app, flujos, roles, demo en Android e iPhone, alcance actual vs. futuro y puesta en marcha.
 
-When you're ready, run:
+---
+
+## Demo rápida (5 minutos)
+
+### Usuarios de prueba
+
+| Perfil | RUT | PIN (4 dígitos) |
+|--------|-----|-----------------|
+| Colaboradora | 12.345.678-5 | 5678 |
+| Supervisor | 11.111.111-1 | 1111 |
+| Administradora | 98.765.432-5 | 5432 |
+
+**Supermercado demo:** San Nicolás 1033, San Miguel (comuna San Miguel).
+
+### En el celular (Android o iPhone)
+
+1. Instala **Expo Go** compatible con SDK 56 (ver [guía](docs/GUIA_DEL_PROYECTO.md#demo-en-android)).
+2. En la computadora de desarrollo: `npm install` y luego `npm start`.
+3. Escanea el código QR con Expo Go (misma red Wi‑Fi que la PC).
+4. Inicia sesión con María González y registra un **Ingreso** en el supermercado demo.
+
+### Servidor de prueba (sync y correos)
+
+En otra terminal:
 
 ```bash
-npm run reset-project
+npm run api:3002
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+(El puerto debe coincidir con `EXPO_PUBLIC_API_URL` en tu `.env`.)
 
-### Other setup steps
+Configura las variables en `.env` (copia desde `.env.example`). Los correos de demo se envían a **Mailtrap** (bandeja de pruebas, no llegan al cliente real).
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+---
 
-## Learn more
+## Comandos útiles
 
-To learn more about developing your project with Expo, look at the following resources:
+| Comando | Para qué sirve |
+|---------|----------------|
+| `npm start` | Abre la app en Expo Go |
+| `npm run api` | Levanta el servidor local (sync + correos) |
+| `npm run web` | Vista previa en navegador (funciones limitadas) |
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+---
 
-## Join the community
+## Estructura del repositorio (resumen)
 
-Join our community of developers creating universal apps.
+| Carpeta | Contenido |
+|---------|-----------|
+| `src/app/` | Pantallas de la app (login, inicio, historial, etc.) |
+| `src/database/` | Base de datos local y datos demo |
+| `src/services/` | Lógica de asistencia, sync, correos |
+| `backend/` | Servidor de prueba (API + envío SMTP) |
+| `database/` | Esquema SQL de referencia |
+| `docs/` | Documentación para negocio y operación |
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## Estado del proyecto
+
+Versión demo funcional: login, permisos, registro ingreso/salida con GPS y cámara, historial, panel de supervisión básico, cola de sincronización y correos con plantilla corporativa.
+
+Pendiente para producción: backend definitivo en la nube, PDF de reportes, cifrado avanzado, publicación en App Store / Play Store y cumplimiento legal completo. Detalle en la [guía del proyecto](docs/GUIA_DEL_PROYECTO.md#alcance-final-del-proyecto).
+
+---
+
+## Contacto
+
+**IntegralTech Consulting Spa**  
+Mauricio Durán Torres — CTO  
+[mauriciodurant@gmail.com](mailto:mauriciodurant@gmail.com)
+
+---
+
+*Última actualización: junio 2026*
