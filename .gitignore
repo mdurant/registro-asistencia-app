@@ -3,6 +3,10 @@
 # dependencies
 node_modules/
 
+.claude/
+.vscode/
+todoList.md
+
 # Expo
 .expo/
 dist/
