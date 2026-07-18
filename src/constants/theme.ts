@@ -18,6 +18,10 @@ export const Palette = {
   errorBg: '#FEE2E2',
   info: '#3B82F6',
   infoBg: '#DBEAFE',
+  attendanceEntry: '#047857',
+  attendanceEntryBg: '#D1FAE5',
+  attendanceExit: '#C2410C',
+  attendanceExitBg: '#FFEDD5',
 } as const;
 
 export const Colors = {

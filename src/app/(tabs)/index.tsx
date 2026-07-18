@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native';
@@ -133,7 +134,10 @@ export default function HomeScreen() {
         renderItem={({ item }) => {
           const isActive = openVisit?.supermarketId === item.id;
           return (
-            <Pressable onPress={() => handleSupermarketPress(item)}>
+            <Pressable
+              onPress={() => handleSupermarketPress(item)}
+              accessibilityRole="button"
+              accessibilityLabel={isActive ? `Registrar salida de ${item.name}` : `Registrar ingreso en ${item.name}`}>
               <Card style={[styles.smCard, isActive && styles.smCardActive]}>
                 <View style={styles.smHeader}>
                   <Text style={styles.smName}>{item.name}</Text>
@@ -141,9 +145,21 @@ export default function HomeScreen() {
                 </View>
                 <Text style={styles.smMeta}>{item.commune} · radio comuna o {item.geofenceRadiusM} m del local</Text>
                 <Text style={styles.smAddress}>{item.address}</Text>
-                <Text style={styles.smAction}>
-                  {isActive ? 'Toca para registrar Salida →' : 'Toca para registrar Ingreso →'}
-                </Text>
+                <View style={[styles.smAction, isActive ? styles.smActionExit : styles.smActionEntry]}>
+                  <Ionicons
+                    name={isActive ? 'log-out-outline' : 'log-in-outline'}
+                    size={20}
+                    color={isActive ? Palette.attendanceExit : Palette.attendanceEntry}
+                  />
+                  <Text style={[styles.smActionText, isActive ? styles.smActionTextExit : styles.smActionTextEntry]}>
+                    {isActive ? 'Registrar Salida' : 'Registrar Ingreso'}
+                  </Text>
+                  <Ionicons
+                    name="chevron-forward"
+                    size={18}
+                    color={isActive ? Palette.attendanceExit : Palette.attendanceEntry}
+                  />
+                </View>
               </Card>
             </Pressable>
           );
@@ -176,11 +192,24 @@ const styles = StyleSheet.create({
   rut: { fontSize: 13, color: Palette.textSecondary },
   sectionTitle: { fontSize: 18, fontWeight: '700', color: Palette.text },
   smCard: { marginBottom: Spacing.sm, gap: 4 },
-  smCardActive: { borderWidth: 2, borderColor: Palette.primary },
+  smCardActive: { borderWidth: 2, borderColor: Palette.attendanceExit },
   smHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
   smName: { fontSize: 16, fontWeight: '600', color: Palette.text, flex: 1 },
   smMeta: { fontSize: 13, color: Palette.primary, fontWeight: '500' },
   smAddress: { fontSize: 13, color: Palette.textSecondary },
-  smAction: { fontSize: 13, color: Palette.primary, fontWeight: '600', marginTop: Spacing.xs },
+  smAction: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: Spacing.sm,
+    borderRadius: 10,
+    paddingHorizontal: Spacing.md,
+    paddingVertical: 10,
+    marginTop: Spacing.sm,
+  },
+  smActionEntry: { backgroundColor: Palette.attendanceEntryBg },
+  smActionExit: { backgroundColor: Palette.attendanceExitBg },
+  smActionText: { flex: 1, fontSize: 14, fontWeight: '700' },
+  smActionTextEntry: { color: Palette.attendanceEntry },
+  smActionTextExit: { color: Palette.attendanceExit },
   empty: { textAlign: 'center', color: Palette.textMuted, padding: Spacing.xl },
 });

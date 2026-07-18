@@ -1,13 +1,17 @@
-import { Pressable, StyleSheet, Text, type TextStyle, type ViewStyle } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import type { ComponentProps } from 'react';
+import { Pressable, StyleSheet, Text, View, type TextStyle, type ViewStyle } from 'react-native';
 
 import { Palette, Radius, Spacing } from '@/constants/theme';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'danger' | 'entry' | 'exit';
+type IoniconName = ComponentProps<typeof Ionicons>['name'];
 
 interface ButtonProps {
   title: string;
   onPress: () => void;
   variant?: ButtonVariant;
+  icon?: IoniconName;
   loading?: boolean;
   disabled?: boolean;
   style?: ViewStyle;
@@ -30,12 +34,21 @@ const variantStyles: Record<ButtonVariant, { container: ViewStyle; text: TextSty
     container: { backgroundColor: Palette.error },
     text: { color: '#fff' },
   },
+  entry: {
+    container: { backgroundColor: Palette.attendanceEntry },
+    text: { color: '#fff' },
+  },
+  exit: {
+    container: { backgroundColor: Palette.attendanceExit },
+    text: { color: '#fff' },
+  },
 };
 
 export function Button({
   title,
   onPress,
   variant = 'primary',
+  icon,
   loading = false,
   disabled = false,
   style,
@@ -45,6 +58,7 @@ export function Button({
     <Pressable
       onPress={onPress}
       disabled={disabled || loading}
+      accessibilityRole="button"
       style={({ pressed }) => [
         styles.base,
         v.container,
@@ -52,7 +66,10 @@ export function Button({
         pressed && styles.pressed,
         style,
       ]}>
-      <Text style={[styles.text, v.text]}>{loading ? 'Cargando...' : title}</Text>
+      <View style={styles.content}>
+        {!loading && icon ? <Ionicons name={icon} size={22} color={v.text.color as string} /> : null}
+        <Text style={[styles.text, v.text]}>{loading ? 'Cargando...' : title}</Text>
+      </View>
     </Pressable>
   );
 }
@@ -65,6 +82,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     minHeight: 52,
+  },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: Spacing.sm,
   },
   text: {
     fontSize: 16,

@@ -178,6 +178,8 @@ export default function CaptureScreen() {
 
       <Button
         title={isIngreso ? 'Confirmar Ingreso' : 'Confirmar Salida'}
+        icon={isIngreso ? 'log-in-outline' : 'log-out-outline'}
+        variant={isIngreso ? 'entry' : 'exit'}
         onPress={() => handleCapture(false)}
         loading={loading}
         disabled={!canRegister || loading}
